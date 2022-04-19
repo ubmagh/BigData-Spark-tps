@@ -98,8 +98,9 @@ public class Application1 {
         List<Tuple2<Double,String>> listTop5Froides = stationsMeanTmin.take(5);
 
         System.out.println(" ==> Top 5 des stations météo les plus chaudes : "+listTop5Chaudes);
-        System.out.println(" ==> Top 5 des stations météo les plus froifes : "+listTop5Froides);
-
+        System.out.println("        --> selon les moyens des températures max TMAX ");
+        System.out.println(" ==> Top 5 des stations météo les plus froides : "+listTop5Froides);
+        System.out.println("        --> selon les moyens des températures min TMIN ");
 
     }
 

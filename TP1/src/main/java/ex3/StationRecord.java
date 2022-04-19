@@ -1,10 +1,9 @@
 package ex3;
 
-import java.io.Serializable;
-import java.util.Comparator;
-import java.util.Objects;
 
-public class StationRecord implements Serializable, Comparable {
+import java.io.Serializable;
+
+public class StationRecord implements Serializable {
 
     private String id;
     private String recordType; // min max ..
@@ -53,24 +52,4 @@ public class StationRecord implements Serializable, Comparable {
         this.date = date;
     }
 
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        StationRecord that = (StationRecord) o;
-        return Objects.equals(id, that.id) && Objects.equals(recordType, that.recordType) && Objects.equals(temperature, that.temperature) && Objects.equals(date, that.date);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, recordType, temperature, date);
-    }
-
-    @Override
-    public int compareTo(Object o) {
-        StationRecord sr = (StationRecord) o;
-        return Double.compare( this.getTemperature(), sr.getTemperature());
-    }
 }
