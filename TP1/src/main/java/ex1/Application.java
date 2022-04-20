@@ -40,8 +40,8 @@ public class Application {
         // 6 :  reduce by key
         // rdd71 => rdd7
         // rdd81 => rdd8
-        JavaPairRDD<String,Integer> rdd7 = rdd71.reduceByKey( (k1,k2) -> k1+k2 );
-        JavaPairRDD<String,Integer> rdd8 = rdd81.reduceByKey((k1,k2) -> k1+k2);
+        JavaPairRDD<String,Integer> rdd7 = rdd71.reduceByKey(Integer::sum);
+        JavaPairRDD<String,Integer> rdd8 = rdd81.reduceByKey(Integer::sum);
 
         // 7 : union
         // rdd9 = rdd7 + rdd8
@@ -52,7 +52,7 @@ public class Application {
 
 
         //affichqge de RDD10
-        rdd10.foreach(a -> System.out.println(a));
+        rdd10.foreach(System.out::println);
         System.out.println(rdd10.count());
     }
 }

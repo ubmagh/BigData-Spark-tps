@@ -11,7 +11,6 @@ import java.util.Arrays;
 public class Application2 {
 
     public static void main(String[] args) {
-
         SparkConf conf = new SparkConf().setAppName("EX2-Q2 TP1 RDD").setMaster("local[*]");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
@@ -22,11 +21,9 @@ public class Application2 {
                     ,Double.parseDouble( Arrays.asList(s.split(" ")).get(3) )
                 )
             );
-
-
         System.out.println("++> Total des ventes ; ");
-        JavaPairRDD<String, Double> rdd3 = rdd2.reduceByKey((aDouble, aDouble2) -> aDouble+aDouble2);
-        rdd3.foreach(stringDoubleTuple2 -> System.out.println(stringDoubleTuple2));
+        JavaPairRDD<String, Double> rdd3 = rdd2.reduceByKey(Double::sum);
+        rdd3.foreach(System.out::println);
     }
 
 }

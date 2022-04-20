@@ -16,7 +16,7 @@ public class Application1 {
         JavaRDD<String> rdd1=sc.textFile("ventes.txt");
         JavaRDD<Double> rdd2=rdd1.map( s -> Double.parseDouble( Arrays.asList(s.split(" ")).get(3) ) );
 
-        System.out.println("++> Total des ventes ; "+rdd2.reduce((aDouble, aDouble2) -> aDouble+aDouble2));
+        System.out.println("++> Total des ventes ; "+rdd2.reduce(Double::sum));
     }
 
 }

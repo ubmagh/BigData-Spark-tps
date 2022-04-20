@@ -1,6 +1,5 @@
 package ex3;
 
-import org.apache.hadoop.util.hash.Hash;
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -64,7 +63,6 @@ public class Application1 {
             List<Double> listD = new ArrayList<>();
             tupleElem._2.forEach(list::add);
             listD = list.stream().filter(stationRecord -> stationRecord.getRecordType().equals("TMAX")).map(StationRecord::getTemperature).collect(Collectors.toList());
-            System.out.println("size 1 => "+listD.size());
             return new Tuple2<String, List<Double>>( tupleElem._1.toString(), listD);
         });
 
@@ -72,7 +70,7 @@ public class Application1 {
             List<StationRecord> list = new ArrayList<>();
             List<Double> listD = new ArrayList<>();
             tupleElem._2.forEach(list::add);
-            listD = list.stream().filter(stationRecord -> stationRecord.getRecordType().equals("TMIN")).map(stationRecord -> stationRecord.getTemperature()).collect(Collectors.toList());
+            listD = list.stream().filter(stationRecord -> stationRecord.getRecordType().equals("TMIN")).map(StationRecord::getTemperature).collect(Collectors.toList());
             return new Tuple2<String, List<Double>>( tupleElem._1.toString(), listD);
         });
 
