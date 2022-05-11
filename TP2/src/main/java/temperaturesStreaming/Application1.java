@@ -1,4 +1,4 @@
-package ex3;
+package temperaturesStreaming;
 
 import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
@@ -6,26 +6,22 @@ import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import scala.Tuple2;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Application1 {
 
-    private static int YEAR_FILE = 1750;
+    private static int YEAR = 1750;
 
 
     public static void main(String[] args) {
 
-        // SparkConf conf = new SparkConf().setAppName("EX3 TP1 RDD").setMaster("local[*]");
-        SparkConf conf = new SparkConf().setAppName("EX3 TP1 RDD"); // use this on spark environment
-
+        SparkConf conf = new SparkConf().setAppName("EX3 TP1 RDD").setMaster("local[*]");
         JavaSparkContext sc = new JavaSparkContext(conf);
 
-        // Locally :
-        // JavaRDD<String> rdd1=sc.textFile(YEAR+".csv");
-
-        // hdfs file
-        JavaRDD<String> rdd1=sc.textFile("hdfs://localhost:9000/"+ YEAR_FILE +".csv");
+        JavaRDD<String> rdd1=sc.textFile(YEAR+".csv");
 
         JavaRDD<StationRecord> stations_records = rdd1.map(s -> {
             List<String> splitted  =Arrays.asList(s.split(",") ) ;

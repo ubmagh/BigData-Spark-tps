@@ -1,0 +1,10 @@
+[
+  {"id": 1,"name": "Ayoub","phone": "0XXXXXXXXX1","salary": 909090909.99,"age": 21,"departement": "Data departement"},
+  {"id": 2,"name": "Mouad","phone": "0XXXXXXXXX2","salary": 1021341.99,"age": 18,"departement": "Marketing"},
+  {"id": 3,"name": "Ahmed","phone": "0XXXXXXXXX3","salary": 2134.99,"age": 31,"departement": "Maintennance"},
+  {"id": 4,"name": "Ali","phone": "0XXXXXXXXX4","salary": 12342.99,"age": 44,"departement": "Logistics"},
+  {"id": 5,"name": "Mohamed","phone": "0XXXXXXXXX5","salary": 1234.99,"age": 52,"departement": "Marketing"},
+  {"id": 6,"name": "IBRAHIM","phone": "0XXXXXXXXX6","salary": 999.99,"age": 27,"departement": "Software Engineering"},
+  {"id": 7,"name": "Youssef","phone": "0XXXXXXXXX7","salary": 12345.99,"age": 24,"departement": "Logistics"},
+  {"id": 8,"name": "Jalal","phone": "0XXXXXXXXX8","salary": 56782.99,"age": 30,"departement": "Data departement"}
+]

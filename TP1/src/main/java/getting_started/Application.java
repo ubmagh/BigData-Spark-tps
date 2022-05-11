@@ -9,6 +9,8 @@ import java.util.Arrays;
 public class Application {
     public static void main(String[] args) {
         SparkConf conf=new SparkConf().setAppName("TP 1 RDD").setMaster("local[*]");
+        // SparkConf conf=new SparkConf().setAppName("TP 1 RDD"); // use this on spark environment
+
         JavaSparkContext sc=new JavaSparkContext(conf);
         JavaRDD<Integer> rdd1=sc.parallelize(Arrays.asList(12,10,9,20,39,8));
         JavaRDD<Integer> rdd2=rdd1.map(a -> a+1);

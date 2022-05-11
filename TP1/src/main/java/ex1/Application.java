@@ -11,7 +11,7 @@ import java.util.Locale;
 
 public class Application {
     public static void main(String[] args) {
-        SparkConf conf = new SparkConf().setAppName("EX1 TP1 RDD").setMaster("local[*]");
+        SparkConf conf = new SparkConf().setAppName("EX1 TP1 RDD").setMaster("local[*]"); // local execution
         JavaSparkContext sc = new JavaSparkContext(conf);
 
         // any random operations that respect the question

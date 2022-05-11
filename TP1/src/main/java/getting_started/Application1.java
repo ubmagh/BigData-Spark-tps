@@ -10,7 +10,10 @@ import java.util.Arrays;
 public class Application1 {
     public static void main(String[] args) {
         SparkConf  conf=new SparkConf().setAppName("word count").setMaster("local[*]");
+        // SparkConf conf = new SparkConf().setAppName("word count"); // use this on spark environment
+
         JavaSparkContext sc=new JavaSparkContext(conf);
+        // local file !!
         JavaRDD<String> rdd1=sc.textFile("names.txt");
         JavaRDD<String> rdd2=rdd1.flatMap(s->Arrays.asList(s.split(" ")).iterator());
         JavaPairRDD<String,Integer> rdd3=rdd2.mapToPair(s->new Tuple2<>(s,1));

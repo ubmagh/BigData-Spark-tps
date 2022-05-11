@@ -12,9 +12,13 @@ public class Application2 {
 
     public static void main(String[] args) {
         SparkConf conf = new SparkConf().setAppName("EX2-Q2 TP1 RDD").setMaster("local[*]");
+        // SparkConf conf = new SparkConf().setAppName("EX2-Q2 TP1 RDD"); // use this on spark environment
+
         JavaSparkContext sc = new JavaSparkContext(conf);
 
+        // local file !!
         JavaRDD<String> rdd1=sc.textFile("ventes.txt");
+
         JavaPairRDD<String,Double> rdd2=rdd1.mapToPair(s ->
                 new Tuple2<>(
                     Arrays.asList(s.split(" ")).get(0)+","+Arrays.asList(s.split(" ")).get(1)

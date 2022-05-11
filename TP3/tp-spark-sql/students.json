@@ -1,0 +1,7 @@
+[
+  { "id":  1, "name":  "Ayoub", "note": 20.0},
+  { "id":  2, "name":  "Ahmed", "note": 12.0},
+  { "id":  3, "name":  "Ali", "note": 23.0},
+  { "id":  4, "name":  "Mohamed", "note": 15.0},
+  { "id":  5, "name":  "Mouad", "note": 18.17}
+]
