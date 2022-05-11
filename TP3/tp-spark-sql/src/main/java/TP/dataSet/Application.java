@@ -1,50 +1,45 @@
-package TP;
+package TP.dataSet;
 
-import org.apache.spark.sql.Dataset;
-import org.apache.spark.sql.Row;
-import org.apache.spark.sql.SparkSession;
+import org.apache.spark.api.java.function.FilterFunction;
+import org.apache.spark.sql.*;
+import org.apache.spark.sql.types.StructType;
+
 import static org.apache.spark.sql.functions.col;
 
 public class Application {
     public static void main(String[] args) {
 
         SparkSession ss = SparkSession.builder().appName("TP Spark SQL").master("local[*]").getOrCreate();
+        Encoder<EmployeeBean> employeeBeanEncoder = Encoders.bean(EmployeeBean.class);
 
         // using JSON file
-        // Dataset<Row> df = ss.read().option("multiline", true).json("employes.json");
+        Dataset<EmployeeBean> ds = ss.read().option("multiline", true).json("employes.json").as(employeeBeanEncoder);
 
         // using CSV file
-        Dataset<Row> df = ss.read().option("header", true).csv("employes.csv");
-
+        //Dataset<EmployeeBean> ds = ss.read().format("csv").option("delimiter",",").option("header", true).option("charset", "UTF8") .option("inferSchema", "true").csv("employes.csv").as(employeeBeanEncoder);
 
         System.out.println("Employees with age between 30 & 35");
-        df.select(
-                col("id"),
-                col("name"),
-                col("departement"),
-                col("age").cast("bigint")
-                ).where(col("age").geq(30).and(col("age").leq(35))).show();
-
+        ds.filter((FilterFunction<EmployeeBean>) employeeBean -> employeeBean.getAge()>=30 && employeeBean.getAge()<=35).show();
 
         System.out.println("Salary mean of each departement : ");
-        df.select(
+        ds.select(
                 col("departement"),
-                col("salary").cast("double")
+                col("salary")
         ).groupBy(col("departement")).mean("salary")
                 .show();
 
 
         System.out.println(" Emplooyees per departement : ");
-        df.select(
+        ds.select(
                         col("departement")
                 ).groupBy(col("departement")).count()
                 .show();
 
 
         System.out.println(" Maximum salary per departement : ");
-        df.select(
+        ds.select(
                         col("departement"),
-                        col("salary").cast("double")
+                        col("salary")
                 ).groupBy(col("departement")).max("salary")
                 .show();
 

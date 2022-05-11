@@ -1,14 +1,21 @@
 package temperaturesStreaming;
 
 import org.apache.spark.SparkConf;
+import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.streaming.Durations;
 import org.apache.spark.streaming.api.java.JavaDStream;
 import org.apache.spark.streaming.api.java.JavaStreamingContext;
+import org.apache.spark.util.DoubleAccumulator;
+import temperaturesStreaming.accumulators.TmaxAccumulator;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class Application {
+
+    /*
+    Same idea as TP1, this time I'm using stream Processing concept
+     */
 
     public static void main(String[] args) throws InterruptedException {
 
@@ -28,6 +35,7 @@ public class Application {
                 sr -> sr.getRecordType().equals("TMAX")
         );
 
+
         JavaDStream<StationRecord> tminRDD = stations_records.filter(
                 sr -> sr.getRecordType().equals("TMIN")
         );
@@ -43,16 +51,13 @@ public class Application {
                 max_sum = maximalTemperatures.reduce(Double::sum)
                         ;
 
+
         JavaDStream<Double> max_TMAX = maximalTemperatures.reduce(Math::max),
                             min_TMIN = minimalTemperatures.reduce(Math::min);
 
-        System.out.println(" min count : ");
-        min_count.foreachRDD(
-                 longJavaRDD -> {
-                     System.out.println(" my value size  : "+longJavaRDD.collect().size()+" || content : "+Arrays.toString(longJavaRDD.collect().toArray()) );
 
-                 }
-        );
+
+
 
 
 
