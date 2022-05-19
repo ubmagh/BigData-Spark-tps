@@ -16,7 +16,8 @@ public class Application {
         Dataset<EmployeeBean> ds = ss.read().option("multiline", true).json("employes.json").as(employeeBeanEncoder);
 
         // using CSV file
-        //Dataset<EmployeeBean> ds = ss.read().format("csv").option("delimiter",",").option("header", true).option("charset", "UTF8") .option("inferSchema", "true").csv("employes.csv").as(employeeBeanEncoder);
+        //Dataset<EmployeeBean> ds = ss.read().format("csv").option("delimiter",",").option("header", true).option("charset", "UTF8")
+        // .option("inferSchema", "true").csv("employes.csv").as(employeeBeanEncoder);
 
         System.out.println("Employees with age between 30 & 35");
         ds.filter((FilterFunction<EmployeeBean>) employeeBean -> employeeBean.getAge()>=30 && employeeBean.getAge()<=35).show();
